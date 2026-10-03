@@ -1,0 +1,39 @@
+<aside class="reader-sidebar" aria-label="Blog contents" data-outline-sidebar>
+  <div class="reader-sidebar__header">
+    <h2>Contents</h2>
+    <button class="reader-sidebar__toggle" type="button" aria-expanded="false" aria-controls="topic-tree" data-outline-toggle>Browse topics <span aria-hidden="true">⌄</span></button>
+  </div>
+  <nav class="topic-tree" id="topic-tree" aria-label="Blog topics">
+    {% for topic in site.data.topics %}
+      {% assign topic_number = forloop.index %}
+      {% assign topic_prefix = topic.id | append: '-' %}
+      <details class="topic-tree__topic"{% if page.outline_key contains topic_prefix or include.context == 'index' and forloop.first %} open{% endif %}>
+        <summary>{{ topic.title | escape }}</summary>
+        <div class="topic-tree__children">
+          {% for group in topic.groups %}
+            {% assign group_number = forloop.index %}
+            {% assign group_prefix = topic_prefix | append: group_number | append: '-' %}
+            <details class="topic-tree__group"{% if page.outline_key contains group_prefix or include.context == 'index' and topic_number == 1 and forloop.first %} open{% endif %}>
+              <summary>{{ group.title | escape }}</summary>
+              <ul class="topic-tree__list">
+                {% for item in group.items %}
+                  {% assign item_key = group_prefix | append: forloop.index %}
+                  {% assign published_post = site.posts | where: 'outline_key', item_key | first %}
+                  <li>
+                    {% if published_post %}
+                      <a href="{{ published_post.url | relative_url }}" data-outline-key="{{ item_key }}"{% if page.outline_key == item_key %} aria-current="page"{% endif %}>{{ item | escape }}</a>
+                    {% elsif include.context == 'index' %}
+                      <button type="button" data-outline-item data-outline-key="{{ item_key }}" data-outline-topic="{{ topic.title | escape }}" data-outline-group="{{ group.title | escape }}" aria-pressed="false">{{ item | escape }}</button>
+                    {% else %}
+                      <a href="{{ '/' | relative_url }}#{{ item_key }}" data-outline-key="{{ item_key }}">{{ item | escape }}</a>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </details>
+          {% endfor %}
+        </div>
+      </details>
+    {% endfor %}
+  </nav>
+</aside>

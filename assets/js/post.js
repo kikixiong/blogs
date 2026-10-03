@@ -35,28 +35,18 @@
   if (!links.length) return;
   toc.hidden = false;
 
-  var mobile = window.matchMedia('(max-width: 820px)');
-  function syncDisclosure() {
-    if (mobile.matches) {
-      nav.hidden = toggle.getAttribute('aria-expanded') !== 'true';
-    } else {
-      nav.hidden = false;
-      toggle.setAttribute('aria-expanded', 'false');
-    }
-  }
+  nav.hidden = true;
   toggle.addEventListener('click', function () {
     var expanded = toggle.getAttribute('aria-expanded') !== 'true';
     toggle.setAttribute('aria-expanded', String(expanded));
     nav.hidden = !expanded;
   });
   nav.addEventListener('click', function (event) {
-    if (mobile.matches && event.target.closest('a')) {
+    if (event.target.closest('a')) {
       toggle.setAttribute('aria-expanded', 'false');
       nav.hidden = true;
     }
   });
-  mobile.addEventListener('change', syncDisclosure);
-  syncDisclosure();
 
   var ticking = false;
   function markCurrent() {

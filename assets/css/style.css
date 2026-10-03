@@ -212,7 +212,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   list-style: none;
 }
 .topic-tree__list li { margin: 1px 0; }
-.topic-tree__list button {
+.topic-tree__list :is(a, button) {
   display: block;
   width: 100%;
   padding: 6px 8px 6px 10px;
@@ -225,9 +225,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   font-size: 0.75rem;
   line-height: 1.45;
   text-align: left;
+  text-decoration: none;
 }
-.topic-tree__list button:hover { color: var(--link); background: var(--surface); }
-.topic-tree__list button[aria-pressed="true"] {
+.topic-tree__list :is(a, button):hover { color: var(--link); background: var(--surface); }
+.topic-tree__list :is(a[aria-current="page"], button[aria-pressed="true"]) {
   border-left-color: var(--gold);
   background: var(--surface);
   color: var(--link);
@@ -283,6 +284,18 @@ a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visibl
   font-size: 1.04rem;
 }
 .published { margin-top: 48px; }
+.published--landing { margin-top: 0; }
+.published--landing .reading-pane__eyebrow { margin-bottom: 33px; }
+.published--landing h1 {
+  margin: 0 0 19px;
+  color: var(--link);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.5rem, 4vw, 3.3rem);
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: 1.17;
+}
+.published__intro { margin: 0 0 42px; color: var(--muted); font-size: 1.08rem; }
 .published h2 {
   margin: 0 0 10px;
   color: var(--link);

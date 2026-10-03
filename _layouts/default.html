@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{% if page.layout == 'post' %}zh-CN{% else %}en{% endif %}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,6 +25,10 @@
     </script>
     <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
     {% if page.layout == 'post' %}<script src="{{ '/assets/js/post.js' | relative_url }}" defer></script>{% endif %}
+    {% if page.math %}
+    <script>window.MathJax = {tex: {inlineMath: {'[+]': [['$', '$']]}}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js" defer></script>
+    {% endif %}
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
@@ -36,7 +40,7 @@
         </a>
         <nav class="site-nav" aria-label="Primary navigation">
           <a href="https://kikixiong.github.io/">Home</a>
-          <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Blogs</a>
+          <a href="{{ '/' | relative_url }}"{% if page.url == '/' or page.layout == 'post' %} aria-current="page"{% endif %}>Blogs</a>
           <a href="https://github.com/kikixiong">GitHub</a>
           <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Change color theme">
             <span data-theme-icon aria-hidden="true">☾</span>

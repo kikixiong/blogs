@@ -3,54 +3,28 @@ layout: default
 title: Blogs
 description: "Writing on ML foundations, single-cell foundation models, and agents by Jiaqi Xiong."
 ---
-{% assign first_topic = site.data.topics | first %}
-{% assign first_group = first_topic.groups | first %}
-{% assign first_item = first_group.items | first %}
 <div class="reader-layout">
-  <aside class="reader-sidebar" aria-label="Blog contents" data-outline-sidebar>
-    <div class="reader-sidebar__header">
-      <h2>Contents</h2>
-      <button class="reader-sidebar__toggle" type="button" aria-expanded="false" aria-controls="topic-tree" data-outline-toggle>Browse topics <span aria-hidden="true">⌄</span></button>
-    </div>
-    <nav class="topic-tree" id="topic-tree" aria-label="Blog topics">
-      {% for topic in site.data.topics %}
-        {% assign topic_number = forloop.index %}
-        <details class="topic-tree__topic"{% if forloop.first %} open{% endif %}>
-          <summary>{{ topic.title | escape }}</summary>
-          <div class="topic-tree__children">
-            {% for group in topic.groups %}
-              {% assign group_number = forloop.index %}
-              <details class="topic-tree__group"{% if topic_number == 1 and forloop.first %} open{% endif %}>
-                <summary>{{ group.title | escape }}</summary>
-                <ul class="topic-tree__list">
-                  {% for item in group.items %}
-                    <li><button type="button" data-outline-item data-outline-key="{{ topic.id }}-{{ group_number }}-{{ forloop.index }}" data-outline-topic="{{ topic.title | escape }}" data-outline-group="{{ group.title | escape }}" aria-pressed="{% if topic_number == 1 and group_number == 1 and forloop.first %}true{% else %}false{% endif %}">{{ item | escape }}</button></li>
-                  {% endfor %}
-                </ul>
-              </details>
-            {% endfor %}
-          </div>
-        </details>
-      {% endfor %}
-    </nav>
-  </aside>
+  {% include topic_tree.html context='index' %}
 
   <div class="reader-main">
-    <article class="reading-pane" aria-labelledby="reading-title">
+    <article class="reading-pane" aria-labelledby="reading-title" data-reading-pane hidden>
       <p class="reading-pane__eyebrow">Jiaqi Xiong / Blogs</p>
-      <p class="reading-pane__path" data-reading-path>{{ first_topic.title | escape }} <span aria-hidden="true">/</span> {{ first_group.title | escape }}</p>
-      <h1 id="reading-title" tabindex="-1" data-reading-title>{{ first_item | escape }}</h1>
+      <p class="reading-pane__path" data-reading-path></p>
+      <h1 id="reading-title" tabindex="-1" data-reading-title></h1>
       <div class="reading-pane__draft">
         <p class="reading-pane__draft-label">Planned article</p>
         <p>This note has not been published yet.</p>
       </div>
     </article>
 
-    {% if site.posts.size > 0 %}
-      <section class="published" id="posts" aria-labelledby="posts-title">
-        <h2 id="posts-title">Published articles</h2>
+    <section class="published published--landing" id="posts" aria-labelledby="posts-title" data-published>
+      <p class="reading-pane__eyebrow">Jiaqi Xiong / Blogs</p>
+      <h1 id="posts-title">ML foundations</h1>
+      <p class="published__intro">A growing set of notes on machine learning, single-cell foundation models, and agents. Choose an article in the directory or start here.</p>
+      {% if site.posts.size > 0 %}
+        {% assign ordered_posts = site.posts | sort: 'outline_key' %}
         <ol class="post-list">
-          {% for post in site.posts %}
+          {% for post in ordered_posts %}
             {% assign summary = post.description | default: post.excerpt | strip_html %}
             <li class="post-list__item">
               <article>
@@ -61,7 +35,7 @@ description: "Writing on ML foundations, single-cell foundation models, and agen
             </li>
           {% endfor %}
         </ol>
-      </section>
-    {% endif %}
+      {% endif %}
+    </section>
   </div>
 </div>

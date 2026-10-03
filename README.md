@@ -12,12 +12,15 @@ title: "Post title"
 description: "One sentence shown on the blog index."
 category: ML_foundation
 tags: [transformer, attention]
+outline_key: ml-foundation-1-2
 ---
 
 Write the post here.
 ```
 
-Use `ML_foundation`, `single-cell_foundation model`, or `agent` as the category for a post. The expandable sidebar directory lives in `_data/topics.yml`; its entries select a planned-article placeholder until real articles are published. Commit and push to `main`; GitHub Pages will update the site.
+Use `ML_foundation`, `single-cell_foundation model`, or `agent` as the category for a post. The expandable sidebar directory lives in `_data/topics.yml`. Set `outline_key` to the topic ID, one-based group number, and one-based item number joined by hyphens (for example, `ml-foundation-1-2`). A matching published post becomes a link in the directory; an unpublished entry opens its planned-article page. To typeset TeX math in a post, add `math: true` to its front matter. Commit and push to `main`; GitHub Pages will update the site.
+
+The Transformer and multi-head attention posts include unmodified original-paper figures. Their captions link to the paper, Wikimedia Commons source pages, and the listed CC BY-SA 4.0 license.
 
 The site uses `baseurl: /blogs`. For links to files inside this repository, use Jekyll's `relative_url` filter so paths work under `/blogs/`:
 
