@@ -10,14 +10,14 @@ Create `_posts/YYYY-MM-DD-short-title.md` with front matter:
 ---
 title: "Post title"
 description: "One sentence shown on the blog index."
-category: Research
-tags: [agents, evaluation]
+category: ML_foundation
+tags: [transformer, attention]
 ---
 
 Write the post here.
 ```
 
-Use `Research`, `Reading`, or `Build` as the category to include the post in the topic explorer. Commit and push to `main`; GitHub Pages will update the site. Until the first post is added, the index intentionally displays an empty state and TBD sections.
+Use `ML_foundation`, `single-cell_foundation model`, or `agent` as the category for a post. The expandable sidebar directory lives in `_data/topics.yml`; its entries select a planned-article placeholder until real articles are published. Commit and push to `main`; GitHub Pages will update the site.
 
 The site uses `baseurl: /blogs`. For links to files inside this repository, use Jekyll's `relative_url` filter so paths work under `/blogs/`:
 

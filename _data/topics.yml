@@ -1,14 +1,50 @@
-- id: research
-  category: Research
-  title: Research notes
-  description: Questions, methods, and experiments worth thinking through in writing.
+- id: ml-foundation
+  category: ML_foundation
+  title: ML_foundation
+  description: Core ideas and code behind language models and graph learning.
+  groups:
+    - title: Foundations
+      items:
+        - Self-attention and multi-head attention (MHA)
+        - Transformer encoder and decoder
+        - Positional encoding and RoPE
+    - title: Models and implementation
+      items:
+        - BERT principles and code
+        - GPT principles and code
+        - Pre-training, fine-tuning, and alignment basics
+        - Graph learning and graph neural networks
 
-- id: reading
-  category: Reading
-  title: Reading notes
-  description: Short reflections on papers, books, and useful ideas.
+- id: single-cell-foundation-model
+  category: single-cell_foundation model
+  title: single-cell_foundation model
+  description: Foundations, model design, and evaluation for single-cell data.
+  groups:
+    - title: Data and representations
+      items:
+        - Single-cell data and preprocessing
+        - Gene and cell representations
+    - title: Models and evaluation
+      items:
+        - Foundation model architectures and pre-training
+        - Transfer, adaptation, and downstream tasks
+        - Benchmarks and biological validation
 
-- id: building
-  category: Build
-  title: Build logs
-  description: What I learn while making research tools and prototypes.
+- id: agent
+  category: agent
+  title: agent
+  description: Agent systems, self-improvement, and scientific workflows.
+  groups:
+    - title: Agent systems
+      items:
+        - Planning, tool use, and memory
+        - Retrieval-augmented generation (RAG)
+        - Harness design and evaluation
+    - title: Self-evolution
+      items:
+        - Recursive self-improvement (RSI)
+        - Self-Evolve methods
+    - title: Scientific agents
+      items:
+        - Literature and hypothesis workflows
+        - Experiment planning and analysis

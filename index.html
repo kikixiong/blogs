@@ -1,100 +1,67 @@
 ---
 layout: default
 title: Blogs
-description: "Writing on research, papers, and building by Jiaqi Xiong."
+description: "Writing on ML foundations, single-cell foundation models, and agents by Jiaqi Xiong."
 ---
-<section class="blog-hero" aria-labelledby="blog-title">
-  <p class="blog-hero__context">Jiaqi Xiong / Writing</p>
-  <h1 id="blog-title">Blogs</h1>
-  <p>Notes on research, papers, and things made along the way.</p>
-</section>
-
-<div class="blog-layout">
-  <aside class="explorer" aria-label="Explore blogs">
-    <h2>Explore</h2>
-    {% if site.posts.size > 0 %}
-      <div class="explorer__search">
-        <label for="post-search">Search posts</label>
-        <input id="post-search" type="search" placeholder="Title or keyword" data-post-search autocomplete="off">
-      </div>
-    {% endif %}
-
-    <h3>Topics</h3>
-    {% if site.posts.size > 0 %}
-      <ul class="explorer__list">
-        <li><button type="button" data-category-filter="" aria-pressed="true"><span>All writing</span><span>{{ site.posts.size }}</span></button></li>
-        {% for topic in site.data.topics %}
-          {% assign topic_posts = site.posts | where: 'category', topic.category %}
-          <li><button type="button" data-category-filter="{{ topic.category | downcase | escape }}" aria-pressed="false"><span>{{ topic.title | escape }}</span><span>{{ topic_posts.size }}</span></button></li>
-        {% endfor %}
-      </ul>
-      {% assign sorted_tags = site.tags | sort %}
-      {% if sorted_tags.size > 0 %}
-        <h3>Tags</h3>
-        <div class="explorer__tags" aria-label="Filter by tag">
-          {% for tag in sorted_tags %}
-            <button type="button" data-tag-filter="{{ tag[0] | downcase | escape }}" aria-pressed="false">#{{ tag[0] | escape }}</button>
-          {% endfor %}
-        </div>
-      {% endif %}
-    {% else %}
-      <ul class="explorer__list explorer__list--pending">
-        {% for topic in site.data.topics %}
-          <li><a href="#{{ topic.id }}"><span>{{ topic.title | escape }}</span><span>TBD</span></a></li>
-        {% endfor %}
-      </ul>
-    {% endif %}
+{% assign first_topic = site.data.topics | first %}
+{% assign first_group = first_topic.groups | first %}
+{% assign first_item = first_group.items | first %}
+<div class="reader-layout">
+  <aside class="reader-sidebar" aria-label="Blog contents" data-outline-sidebar>
+    <div class="reader-sidebar__header">
+      <h2>Contents</h2>
+      <button class="reader-sidebar__toggle" type="button" aria-expanded="false" aria-controls="topic-tree" data-outline-toggle>Browse topics <span aria-hidden="true">⌄</span></button>
+    </div>
+    <nav class="topic-tree" id="topic-tree" aria-label="Blog topics">
+      {% for topic in site.data.topics %}
+        {% assign topic_number = forloop.index %}
+        <details class="topic-tree__topic"{% if forloop.first %} open{% endif %}>
+          <summary>{{ topic.title | escape }}</summary>
+          <div class="topic-tree__children">
+            {% for group in topic.groups %}
+              {% assign group_number = forloop.index %}
+              <details class="topic-tree__group"{% if topic_number == 1 and forloop.first %} open{% endif %}>
+                <summary>{{ group.title | escape }}</summary>
+                <ul class="topic-tree__list">
+                  {% for item in group.items %}
+                    <li><button type="button" data-outline-item data-outline-key="{{ topic.id }}-{{ group_number }}-{{ forloop.index }}" data-outline-topic="{{ topic.title | escape }}" data-outline-group="{{ group.title | escape }}" aria-pressed="{% if topic_number == 1 and group_number == 1 and forloop.first %}true{% else %}false{% endif %}">{{ item | escape }}</button></li>
+                  {% endfor %}
+                </ul>
+              </details>
+            {% endfor %}
+          </div>
+        </details>
+      {% endfor %}
+    </nav>
   </aside>
 
-  <div class="blog-main">
-    <section class="posts" id="posts" aria-labelledby="posts-title">
-      <div class="section-heading">
-        <h2 id="posts-title">Posts</h2>
-        {% if site.posts.size > 0 %}<p aria-live="polite"><span data-result-count>{{ site.posts.size }}</span> shown</p>{% else %}<p>0 published</p>{% endif %}
+  <div class="reader-main">
+    <article class="reading-pane" aria-labelledby="reading-title">
+      <p class="reading-pane__eyebrow">Jiaqi Xiong / Blogs</p>
+      <p class="reading-pane__path" data-reading-path>{{ first_topic.title | escape }} <span aria-hidden="true">/</span> {{ first_group.title | escape }}</p>
+      <h1 id="reading-title" tabindex="-1" data-reading-title>{{ first_item | escape }}</h1>
+      <div class="reading-pane__draft">
+        <p class="reading-pane__draft-label">Planned article</p>
+        <p>This note has not been published yet.</p>
       </div>
+    </article>
 
-      {% if site.posts.size > 0 %}
+    {% if site.posts.size > 0 %}
+      <section class="published" id="posts" aria-labelledby="posts-title">
+        <h2 id="posts-title">Published articles</h2>
         <ol class="post-list">
           {% for post in site.posts %}
             {% assign summary = post.description | default: post.excerpt | strip_html %}
-            <li class="post-list__item" data-post data-category="{{ post.category | default: 'Notes' | downcase | escape }}" data-search="{{ post.title | append: ' ' | append: summary | downcase | escape }}" data-tags="{% for tag in post.tags %}{{ tag | downcase | escape }}|{% endfor %}">
+            <li class="post-list__item">
               <article>
                 <p class="post-list__meta"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%-d %b %Y' }}</time>{% if post.category %}<span class="post-list__separator" aria-hidden="true">/</span>{{ post.category | escape }}{% endif %}</p>
                 <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
                 <p class="post-list__summary">{{ summary | truncate: 230 | escape }}</p>
-                {% if post.tags.size > 0 %}<p class="post-list__tags">{% for tag in post.tags %}<span>#{{ tag | escape }}</span>{% endfor %}</p>{% endif %}
-                <a class="post-list__read" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">Read article</a>
               </article>
             </li>
           {% endfor %}
         </ol>
-        <p class="posts__no-results" data-no-results hidden>No posts match those filters. Try another topic or keyword.</p>
-      {% else %}
-        <div class="posts__empty">
-          <p class="posts__empty-mark">TBD</p>
-          <h3>The first article will appear here.</h3>
-          <p>This space is ready for research notes, reading notes, and build logs.</p>
-        </div>
-      {% endif %}
-    </section>
-
-    <section class="planned" aria-labelledby="planned-title">
-      <div class="section-heading">
-        <h2 id="planned-title">Planned writing</h2>
-        <p>TBD</p>
-      </div>
-      <div class="planned__list">
-        {% for topic in site.data.topics %}
-          {% assign topic_posts = site.posts | where: 'category', topic.category %}
-          <section class="planned__item" id="{{ topic.id }}" aria-labelledby="{{ topic.id }}-title">
-            <div>
-              <h3 id="{{ topic.id }}-title">{{ topic.title | escape }}</h3>
-              <p>{{ topic.description | escape }}</p>
-            </div>
-            <span>{% if topic_posts.size > 0 %}{{ topic_posts.size }} {% if topic_posts.size == 1 %}post{% else %}posts{% endif %}{% else %}Posts TBD{% endif %}</span>
-          </section>
-        {% endfor %}
-      </div>
-    </section>
+      </section>
+    {% endif %}
   </div>
 </div>
