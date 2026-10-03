@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+  <a class="back-link" href="{{ '/' | relative_url }}">All notes</a>
+  <header class="post__header">
+    <p class="post__meta"><time datetime="{{ page.date | date: '%Y-%m-%d' }}" itemprop="datePublished">{{ page.date | date: '%-d %B %Y' }}</time>{% if page.category %}<span aria-hidden="true">/</span>{{ page.category | escape }}{% endif %}</p>
+    <h1 itemprop="headline">{{ page.title | escape }}</h1>
+    {% if page.description %}<p class="post__summary" itemprop="description">{{ page.description | escape }}</p>{% endif %}
+  </header>
+  <div class="post__body" itemprop="articleBody">
+    {{ content }}
+  </div>
+  <footer class="post__footer">
+    <a href="{{ '/' | relative_url }}">Back to all notes</a>
+  </footer>
+</article>

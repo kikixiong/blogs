@@ -1,0 +1,19 @@
+title: "Jiaqi Xiong · Notes"
+description: "Research notes, reading notes, and build logs by Jiaqi Xiong."
+url: "https://kikixiong.github.io"
+baseurl: "/blog"
+timezone: "Asia/Shanghai"
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

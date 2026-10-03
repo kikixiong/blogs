@@ -1,0 +1,68 @@
+---
+layout: default
+title: Notes
+description: "Research notes, reading notes, and build logs by Jiaqi Xiong."
+---
+<section class="intro" aria-labelledby="intro-title">
+  <div class="intro__body">
+    <p class="intro__kicker">Jiaqi Xiong's notebook</p>
+    <h1 id="intro-title">Notes from the research desk.</h1>
+    <p class="intro__lede">A place for ideas in progress: AI research, papers I am reading, and things I learn while building.</p>
+  </div>
+  <div class="intro__signature" aria-hidden="true">
+    <span>JX</span>
+  </div>
+</section>
+
+<section class="writing" aria-labelledby="writing-title">
+  <div class="section-heading">
+    <h2 id="writing-title">Latest writing</h2>
+    <span class="section-heading__count">{{ site.posts.size }} {% if site.posts.size == 1 %}post{% else %}posts{% endif %}</span>
+  </div>
+  {% if site.posts.size > 0 %}
+    <ol class="post-list">
+      {% for post in site.posts %}
+        <li class="post-list__item">
+          <div class="post-list__date"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%d %b %Y' }}</time></div>
+          <div class="post-list__content">
+            {% if post.category %}<p class="post-list__category">{{ post.category | escape }}</p>{% endif %}
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+            <p>{{ post.description | default: post.excerpt | strip_html | truncate: 200 }}</p>
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+  {% else %}
+    <div class="empty-state">
+      <div class="empty-state__rule" aria-hidden="true"></div>
+      <div>
+        <h3>The notebook is open; the first post will appear here.</h3>
+        <p>New writing will appear here. The sections below are placeholders for now.</p>
+      </div>
+    </div>
+  {% endif %}
+</section>
+
+<section class="planned" aria-labelledby="planned-title">
+  <div class="section-heading">
+    <h2 id="planned-title">Planned sections</h2>
+    <span class="section-heading__count">TBD</span>
+  </div>
+  <div class="planned__grid">
+    <div class="planned__item">
+      <h3>Research notes</h3>
+      <p>Questions, methods, and experiments worth thinking through in writing.</p>
+      <span>Posts TBD</span>
+    </div>
+    <div class="planned__item">
+      <h3>Reading notes</h3>
+      <p>Short reflections on papers, books, and useful ideas.</p>
+      <span>Posts TBD</span>
+    </div>
+    <div class="planned__item">
+      <h3>Build logs</h3>
+      <p>What I learn while making research tools and prototypes.</p>
+      <span>Posts TBD</span>
+    </div>
+  </div>
+</section>
