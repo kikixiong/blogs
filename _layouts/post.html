@@ -1,17 +1,28 @@
 ---
 layout: default
 ---
-<article class="post" itemscope itemtype="https://schema.org/BlogPosting">
-  <a class="back-link" href="{{ '/' | relative_url }}">All notes</a>
+<article class="post post--reading" itemscope itemtype="https://schema.org/BlogPosting">
+  <nav class="post__breadcrumb" aria-label="Breadcrumb">
+    <a href="{{ '/' | relative_url }}">Blogs</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">{{ page.title | escape }}</span>
+  </nav>
   <header class="post__header">
-    <p class="post__meta"><time datetime="{{ page.date | date: '%Y-%m-%d' }}" itemprop="datePublished">{{ page.date | date: '%-d %B %Y' }}</time>{% if page.category %}<span aria-hidden="true">/</span>{{ page.category | escape }}{% endif %}</p>
+    <p class="post__meta"><time datetime="{{ page.date | date: '%Y-%m-%d' }}" itemprop="datePublished">{{ page.date | date: '%-d %B %Y' }}</time>{% if page.category %}<span aria-hidden="true">·</span><span>{{ page.category | escape }}</span>{% endif %}</p>
     <h1 itemprop="headline">{{ page.title | escape }}</h1>
     {% if page.description %}<p class="post__summary" itemprop="description">{{ page.description | escape }}</p>{% endif %}
+    <p class="post__byline">By <span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">{{ page.author | default: site.author | default: 'Jiaqi Xiong' | escape }}</span></span>{% if page.translation_url %}<span aria-hidden="true">·</span><a href="{{ page.translation_url | escape }}">Read translation</a>{% endif %}</p>
   </header>
-  <div class="post__body" itemprop="articleBody">
-    {{ content }}
+  <div class="post__reading-grid">
+    <aside class="post-toc" data-post-toc hidden>
+      <button class="post-toc__toggle" type="button" aria-expanded="false" aria-controls="post-toc-links" data-post-toc-toggle>On this page <span aria-hidden="true">⌄</span></button>
+      <nav class="post-toc__nav" id="post-toc-links" aria-label="On this page" data-post-toc-nav></nav>
+    </aside>
+    <div class="post__body" itemprop="articleBody" data-post-body>
+      {{ content }}
+    </div>
   </div>
   <footer class="post__footer">
-    <a href="{{ '/' | relative_url }}">Back to all notes</a>
+    <a href="{{ '/' | relative_url }}">Back to Blogs</a>
   </footer>
 </article>

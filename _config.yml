@@ -1,7 +1,8 @@
-title: "Jiaqi Xiong · Notes"
-description: "Research notes, reading notes, and build logs by Jiaqi Xiong."
+title: "Jiaqi Xiong · Blogs"
+description: "Writing on research, papers, and building by Jiaqi Xiong."
+author: "Jiaqi Xiong"
 url: "https://kikixiong.github.io"
-baseurl: "/blog"
+baseurl: "/blogs"
 timezone: "Asia/Shanghai"
 markdown: kramdown
 permalink: /:year/:month/:day/:title/

@@ -19,4 +19,52 @@
   });
 
   updateButton();
+
+  var posts = Array.prototype.slice.call(document.querySelectorAll('[data-post]'));
+  if (posts.length === 0) return;
+
+  var search = document.querySelector('[data-post-search]');
+  var categoryButtons = Array.prototype.slice.call(document.querySelectorAll('[data-category-filter]'));
+  var tagButtons = Array.prototype.slice.call(document.querySelectorAll('[data-tag-filter]'));
+  var resultCount = document.querySelector('[data-result-count]');
+  var noResults = document.querySelector('[data-no-results]');
+  var activeCategory = '';
+  var activeTag = '';
+
+  function filterPosts() {
+    var query = search.value.trim().toLocaleLowerCase();
+    var visible = 0;
+    posts.forEach(function (post) {
+      var matchesSearch = !query || post.dataset.search.indexOf(query) !== -1;
+      var matchesCategory = !activeCategory || post.dataset.category === activeCategory;
+      var matchesTag = !activeTag || post.dataset.tags.split('|').indexOf(activeTag) !== -1;
+      var show = matchesSearch && matchesCategory && matchesTag;
+      post.hidden = !show;
+      if (show) visible += 1;
+    });
+    resultCount.textContent = visible;
+    noResults.hidden = visible !== 0;
+  }
+
+  search.addEventListener('input', filterPosts);
+
+  categoryButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      activeCategory = button.dataset.categoryFilter;
+      categoryButtons.forEach(function (candidate) {
+        candidate.setAttribute('aria-pressed', String(candidate === button));
+      });
+      filterPosts();
+    });
+  });
+
+  tagButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      activeTag = activeTag === button.dataset.tagFilter ? '' : button.dataset.tagFilter;
+      tagButtons.forEach(function (candidate) {
+        candidate.setAttribute('aria-pressed', String(candidate.dataset.tagFilter === activeTag));
+      });
+      filterPosts();
+    });
+  });
 })();

@@ -1,0 +1,14 @@
+- id: research
+  category: Research
+  title: Research notes
+  description: Questions, methods, and experiments worth thinking through in writing.
+
+- id: reading
+  category: Reading
+  title: Reading notes
+  description: Short reflections on papers, books, and useful ideas.
+
+- id: building
+  category: Build
+  title: Build logs
+  description: What I learn while making research tools and prototypes.
