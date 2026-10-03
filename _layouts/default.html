@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;700&family=Source+Serif+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     {% if page.layout == 'post' %}<link rel="stylesheet" href="{{ '/assets/css/post.css' | relative_url }}">{% endif %}
+    {% for stylesheet in page.post_css %}<link rel="stylesheet" href="{{ stylesheet | relative_url | escape }}">{% endfor %}
     <script>
       try {
         var savedTheme = localStorage.getItem('ox-theme');
@@ -25,6 +26,7 @@
     </script>
     <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
     {% if page.layout == 'post' %}<script src="{{ '/assets/js/post.js' | relative_url }}" defer></script>{% endif %}
+    {% for script in page.post_js %}<script src="{{ script | relative_url | escape }}" defer></script>{% endfor %}
     {% if page.math %}
     <script>window.MathJax = {tex: {inlineMath: {'[+]': [['$', '$']]}}};</script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js" defer></script>

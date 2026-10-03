@@ -22,6 +22,17 @@ Use `ML_foundation`, `single-cell_foundation model`, or `agent` as the category 
 
 The Transformer and multi-head attention posts include unmodified original-paper figures. Their captions link to the paper, Wikimedia Commons source pages, and the listed CC BY-SA 4.0 license.
 
+For an interactive article, keep its CSS and JavaScript under `assets/posts/<slug>/` and list them in the post's front matter:
+
+```yaml
+post_css:
+  - /assets/posts/<slug>/demo.css
+post_js:
+  - /assets/posts/<slug>/demo.js
+```
+
+These files load only on that article. Keep the central explanation and a static figure or text fallback readable without JavaScript; add keyboard-accessible controls and a reduced-motion state for animation.
+
 The site uses `baseurl: /blogs`. For links to files inside this repository, use Jekyll's `relative_url` filter so paths work under `/blogs/`:
 
 ```liquid
