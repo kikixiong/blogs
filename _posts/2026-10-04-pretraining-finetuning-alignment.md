@@ -5,6 +5,8 @@ date: 2026-10-04
 category: ML_foundation
 tags: [pretraining, fine-tuning, alignment, RLHF, DPO]
 outline_key: ml-foundation-2-3
+permalink: /LLM-Training/
+redirect_from: /2026/10/04/pretraining-finetuning-alignment/
 math: true
 ---
 

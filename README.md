@@ -13,12 +13,15 @@ description: "One sentence shown on the blog index."
 category: ML_foundation
 tags: [transformer, attention]
 outline_key: ml-foundation-1-2
+permalink: /Transformer/
 ---
 
 Write the post here.
 ```
 
 Use `ML_foundation`, `single-cell_foundation model`, or `agent` as the category for a post. The expandable sidebar directory lives in `_data/topics.yml`. Set `outline_key` to the topic ID, one-based group number, and one-based item number joined by hyphens (for example, `ml-foundation-1-2`). A matching published post becomes a link in the directory; an unpublished entry opens its planned-article page. To typeset TeX math in a post, add `math: true` to its front matter. Commit and push to `main`; GitHub Pages will update the site.
+
+Post URLs omit the date. The default URL uses the filename slug (`/:title/`); set `permalink` when a shorter, stable path is useful. When changing a published URL, preserve its old path with `redirect_from` (without the `/blogs` base URL), for example `redirect_from: /2026/10/04/transformer/`. Keep the trailing slash so Jekyll builds an `index.html` for the path.
 
 The Transformer and multi-head attention posts include unmodified original-paper figures. Their captions link to the paper, Wikimedia Commons source pages, and the listed CC BY-SA 4.0 license.
 

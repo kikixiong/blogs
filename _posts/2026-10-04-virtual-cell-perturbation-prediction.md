@@ -5,6 +5,8 @@ date: 2026-10-04
 category: "single-cell_foundation model"
 tags: [virtual-cell, single-cell, perturb-seq, VCC]
 outline_key: single-cell-foundation-model-2-4
+permalink: /Virtual-Cell/
+redirect_from: /2026/10/04/virtual-cell-perturbation-prediction/
 post_css:
   - /assets/posts/virtual-cell-perturbation-prediction/flow.css
 ---

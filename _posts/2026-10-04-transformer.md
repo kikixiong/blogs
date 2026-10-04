@@ -5,6 +5,8 @@ date: 2026-10-04
 category: ML_foundation
 tags: [transformer, encoder, decoder, positional-encoding, pytorch]
 outline_key: ml-foundation-1-2
+permalink: /Transformer/
+redirect_from: /2026/10/04/transformer/
 ---
 
 Transformer 最初是为序列到序列任务设计的：读入源序列，再逐个预测目标序列。它把“读懂输入”和“生成输出”分给两组堆叠的层。阅读 [《Attention Is All You Need》图 1](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)时，从左下角沿编码器往上走，再从右下角沿解码器往上走；中间横向箭头表示解码器读取编码器的输出。

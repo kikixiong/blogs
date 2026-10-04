@@ -5,6 +5,8 @@ date: 2026-10-04
 category: ML_foundation
 tags: [attention, self-attention, MHA, transformer, pytorch]
 outline_key: ml-foundation-1-1
+permalink: /MHA/
+redirect_from: /2026/10/04/attention-mha/
 ---
 
 读 Transformer 时，最容易卡住的地方是：Q、K、V 到底是什么，为什么要分成多个头？先看一个直觉：处理句子里某个词时，我们希望它按需要读取其他词的信息。当前位置提出问题（query），各位置提供可匹配的索引（key）和被读取的内容（value）；匹配程度越高，读取的比例越大。这三个名字描述的是**作用**，不意味着它们必须来自三份不同的输入。

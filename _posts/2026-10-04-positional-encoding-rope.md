@@ -5,6 +5,8 @@ date: 2026-10-04
 category: ML_foundation
 tags: [Transformer, positional encoding, RoPE, attention]
 outline_key: ml-foundation-1-3
+permalink: /RoPE/
+redirect_from: /2026/10/04/positional-encoding-rope/
 ---
 
 ## 为什么需要位置

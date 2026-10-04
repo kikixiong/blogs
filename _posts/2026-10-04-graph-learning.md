@@ -5,6 +5,8 @@ date: 2026-10-04
 category: ML_foundation
 tags: [graph-learning, GNN, GCN, GAT, PyTorch]
 outline_key: ml-foundation-2-4
+permalink: /GNN/
+redirect_from: /2026/10/04/graph-learning/
 ---
 
 ## 图是怎样的数据

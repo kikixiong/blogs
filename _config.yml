@@ -5,7 +5,9 @@ url: "https://kikixiong.github.io"
 baseurl: "/blogs"
 timezone: "Asia/Shanghai"
 markdown: kramdown
-permalink: /:year/:month/:day/:title/
+permalink: /:title/
+plugins:
+  - jekyll-redirect-from
 
 defaults:
   - scope:
