@@ -29,6 +29,7 @@
         - Foundation model architectures and pre-training
         - Transfer, adaptation, and downstream tasks
         - Benchmarks and biological validation
+        - Virtual cells and perturbation prediction
 
 - id: agent
   category: agent
