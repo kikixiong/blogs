@@ -34,6 +34,10 @@
 .vc-flow__dots i:nth-child(3n) { opacity: .55; }
 .vc-flow__dots i:nth-child(4n) { width: 12px; height: 12px; }
 .vc-concept figcaption { margin-top: 10px; }
+.vc-paper-figure > a { display: block; cursor: zoom-in; }
+.vc-paper-figure > a:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
+.post--reading .post__body table th:first-child,
+.post--reading .post__body table td:first-child { white-space: nowrap; }
 @media (max-width: 720px) {
   .vc-flow { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 12px; }
   .vc-flow__card { min-height: 0; padding: 14px 16px; }
