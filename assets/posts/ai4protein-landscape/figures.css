@@ -1,0 +1,91 @@
+/* AI4Protein 全景入门：中心法则流程与任务谱示意 */
+
+.ap-fig { margin: 1.9em 0; }
+.ap-fig figcaption { margin-top: 10px; }
+
+/* ---- 图 1：从基因到功能的信息流 ---- */
+.ap-dogma {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 26px minmax(0, 1fr) 26px minmax(0, 1fr) 26px minmax(0, 1fr);
+  gap: 8px;
+  align-items: stretch;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  font-family: Inter, Arial, sans-serif;
+}
+.ap-dogma__card {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 15px 14px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--link);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.ap-dogma__card:nth-child(3) { border-top-color: #678bb0; }
+.ap-dogma__card:nth-child(5) { border-top-color: #3a9678; }
+.ap-dogma__card:nth-child(7) { border-top-color: var(--gold); }
+.ap-dogma__level {
+  color: var(--muted);
+  font-size: .68rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+.ap-dogma__card strong { color: var(--link); font-size: .97rem; line-height: 1.35; }
+.ap-dogma__repr {
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+  color: var(--muted);
+  font-size: .73rem;
+  line-height: 1.45;
+}
+.ap-dogma__repr b { color: var(--ink); font-weight: 600; }
+.ap-dogma__step {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  color: var(--muted);
+  font-size: .62rem;
+  text-align: center;
+}
+.ap-dogma__step span:first-child { color: var(--link); font-size: 1.25rem; line-height: 1; }
+
+/* ---- 图 2：任务谱三角 ---- */
+.ap-tasks {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.ap-tasks svg { display: block; width: 100%; height: auto; }
+.ap-tasks .ap-node { fill: var(--paper); stroke: var(--line); stroke-width: 1.5; }
+.ap-tasks .ap-node-seq { stroke: #678bb0; stroke-width: 2.2; }
+.ap-tasks .ap-node-str { stroke: #3a9678; stroke-width: 2.2; }
+.ap-tasks .ap-node-fun { stroke: var(--gold); stroke-width: 2.2; }
+.ap-tasks .ap-nlabel { fill: var(--ink); font: 600 17px Inter, Arial, sans-serif; }
+.ap-tasks .ap-nsub { fill: var(--muted); font: 12px Inter, Arial, sans-serif; }
+.ap-tasks .ap-edge { fill: none; stroke: var(--muted); stroke-width: 1.6; opacity: .8; }
+.ap-tasks .ap-tlabel { fill: var(--ink); font: 600 13px Inter, Arial, sans-serif; }
+.ap-tasks .ap-tmodel { fill: var(--muted); font: 11.5px Inter, Arial, sans-serif; }
+.ap-tasks .ap-gen { fill: none; stroke: var(--gold); stroke-width: 1.8; stroke-dasharray: 6 5; }
+
+/* ---- 指标与术语表的排版辅助 ---- */
+.post--reading .post__body .ap-wide table { font-size: .93rem; }
+.post--reading .post__body .ap-wide table td:first-child,
+.post--reading .post__body .ap-wide table th:first-child { white-space: nowrap; }
+
+@media (max-width: 760px) {
+  .ap-dogma { grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 12px; }
+  .ap-dogma__step { flex-direction: row; gap: 7px; }
+  .ap-dogma__step span:first-child { transform: rotate(90deg); }
+  .ap-dogma__repr { margin-top: 6px; }
+  .ap-tasks { padding: 8px; }
+  .ap-tasks .ap-nsub, .ap-tasks .ap-tmodel { display: none; }
+}

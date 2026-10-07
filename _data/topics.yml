@@ -49,3 +49,24 @@
       items:
         - Literature and hypothesis workflows
         - Experiment planning and analysis
+
+- id: protein-foundation-model
+  category: protein_foundation model
+  title: protein_foundation model
+  description: From the central dogma to protein structure prediction, design, and evaluation.
+  groups:
+    - title: Foundations
+      items:
+        - From the central dogma to the AI4Protein task spectrum
+        - Sequence, structure, and evolutionary features
+    - title: Models and tasks
+      items:
+        - Structure prediction and folding
+        - Inverse folding and sequence design
+        - Protein language models
+        - De novo design and generative models
+        - Complexes, interactions, and binding affinity
+    - title: Evaluation
+      items:
+        - Confidence and structure similarity metrics
+        - Benchmarks and wet-lab validation
